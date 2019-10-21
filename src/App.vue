@@ -1,9 +1,13 @@
 <template>
-  <div id="app">
-    <starlist 
-      :stars="stars" 
-      @edit:star="editSTAR"
-      />
+  <div id="app" class="md-layout md-gutter" >
+    <div class="md-layout-item" />
+    <div class="md-layout-item">
+      <starlist 
+        :stars="stars" 
+        @edit:star="editSTAR"
+        />
+    </div>
+    <div class="md-layout-item" />
   </div>
 </template>
 

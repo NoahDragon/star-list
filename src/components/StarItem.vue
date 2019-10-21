@@ -1,5 +1,5 @@
 <template>
-    <md-list-item class="row">
+    <md-list-item class="row md-elevation-1">
         <md-icon>{{ startype }}</md-icon>
         <div v-if="editing === star.id && type === startype">
             <md-field md-inline v-if="startype === 'S'">
@@ -20,16 +20,16 @@
             </md-field>
         </div>
         <div v-else>
-            <span class="md-list-item-text" v-if="startype === 'S'">
+            <span class="md-list-item-text md-headline" v-if="startype === 'S'">
                 {{ star.s }}
             </span>
-            <span class="md-list-item-text" v-if="startype === 'T'">
+            <span class="md-list-item-text md-headline" v-if="startype === 'T'">
                 {{ star.t }}
             </span>
-            <span class="md-list-item-text" v-if="startype === 'A'">
+            <span class="md-list-item-text md-headline" v-if="startype === 'A'">
                 {{ star.a }}
             </span>
-            <span class="md-list-item-text" v-if="startype === 'R'">
+            <span class="md-list-item-text md-headline" v-if="startype === 'R'">
                 {{ star.r }}
             </span>
         </div>
