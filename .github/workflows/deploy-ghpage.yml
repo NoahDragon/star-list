@@ -1,4 +1,4 @@
-name: CI
+name: Deploy-GH-Pages
 
 on: 
   push:
@@ -18,7 +18,7 @@ jobs:
         npm run build
     - uses: maxheld83/ghpages@v0.2.1
       env:
-        BUILD_DIR: "public/"
+        BUILD_DIR: "dist/"
         GH_PAT: ${{ secrets.GH_PAT }}
     - name: Deploy
       run: echo Deploying
