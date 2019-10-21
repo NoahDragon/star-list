@@ -16,9 +16,9 @@ jobs:
       run: |
         npm install
         npm run build
-    - uses: maxheld83/ghpages@v0.2.1
-      env:
-        BUILD_DIR: "dist/"
-        GH_PAT: ${{ secrets.GH_PAT }}
+    - uses: alex-page/blazing-fast-gh-pages-deploy@v1.1.0
+      with:
+          repo-token: ${{ secrets.GH_PAT }}
+          site-directory: "dist"
     - name: Deploy
       run: echo Deploying
