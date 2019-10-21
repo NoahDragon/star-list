@@ -1,0 +1,24 @@
+name: CI
+
+on: 
+  push:
+    branches: 
+      - master
+
+jobs:
+  build-deploy:
+
+    runs-on: ubuntu-18.04
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build
+      run: |
+        npm install
+        npm run build
+    - uses: maxheld83/ghpages@v0.2.1
+      env:
+        BUILD_DIR: "public/"
+      secrets: ["GH_PAT"]
+    - name: Deploy
+      run: echo Deploying
