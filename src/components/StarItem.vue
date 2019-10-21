@@ -1,42 +1,46 @@
 <template>
-    <tr class="row">
-        <td>{{ startype }}</td>
-        <td v-if="editing === star.id && type === startype">
-            <div v-if="startype === 'S'">
-                <input type="text" v-model="star.s" />
-            </div>
-            <div v-if="startype === 'T'">
-                <input type="text" v-model="star.t" />
-            </div>
-            <div v-if="startype === 'A'">
-                <input type="text" v-model="star.a" />
-            </div>
-            <div v-if="startype === 'R'">
-                <input type="text" v-model="star.r" />
-            </div>
-        </td>
-        <td v-else>
-            <div v-if="startype === 'S'">
+    <md-list-item class="row">
+        <md-icon>{{ startype }}</md-icon>
+        <div v-if="editing === star.id && type === startype">
+            <md-field md-inline v-if="startype === 'S'">
+                <label>Situation</label>
+                <md-input v-model="star.s" />
+            </md-field>
+            <md-field md-inline v-if="startype === 'T'">
+                <label>Task</label>
+                <md-input v-model="star.t" />
+            </md-field>
+            <md-field md-inline v-if="startype === 'A'">
+                <label>Action</label>
+                <md-input v-model="star.a" />
+            </md-field>
+            <md-field md-inline v-if="startype === 'R'">
+                <label>Result</label>
+                <md-input v-model="star.r" />
+            </md-field>
+        </div>
+        <div v-else>
+            <span class="md-list-item-text" v-if="startype === 'S'">
                 {{ star.s }}
-            </div>
-            <div v-if="startype === 'T'">
+            </span>
+            <span class="md-list-item-text" v-if="startype === 'T'">
                 {{ star.t }}
-            </div>
-            <div v-if="startype === 'A'">
+            </span>
+            <span class="md-list-item-text" v-if="startype === 'A'">
                 {{ star.a }}
-            </div>
-            <div v-if="startype === 'R'">
+            </span>
+            <span class="md-list-item-text" v-if="startype === 'R'">
                 {{ star.r }}
-            </div>
-        </td>
-        <td v-if="editing === star.id && type === startype">
+            </span>
+        </div>
+        <div v-if="editing === star.id && type === startype">
             <button @click="editSTAR(star)">Save</button>
             <button class="muted-button" @click="cancelEdit(star)"> Cancel </button>
-        </td>
-        <td v-else>
+        </div>
+        <div v-else>
             <button @click="editMode(star, startype)" class="button">Edit</button>
-        </td>
-    </tr>
+        </div>
+    </md-list-item>
 </template>
 <script>
 export default {

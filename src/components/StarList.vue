@@ -1,7 +1,6 @@
 <template>
   <div id="star-table">
-    <table v-for="star in stars" :key="star.id">
-      <tbody>
+    <md-list v-for="star in stars" :key="star.id">
         <staritem 
           :star="star"
           :startype="'S'"
@@ -22,8 +21,7 @@
           :startype="'R'"
           @update:star="update"
          />
-      </tbody>
-    </table>
+    </md-list>
   </div>
 </template>
 
