@@ -1,5 +1,5 @@
 # Build a List of STAR Method for Interview
-![](https://github.com/NoahDragon/star-list/workflows/deploy-ghpage/badge.svg)
+![](https://github.com/NoahDragon/star-list/workflows/Deploy-GH-Pages/badge.svg)
 
 The **situation, task, action, result (STAR)** format is a technique used by interviewers to gather all the relevant information about a specific capability that the job requires[citation needed].
 
