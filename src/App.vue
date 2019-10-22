@@ -5,6 +5,8 @@
       <starlist 
         :stars="stars" 
         @edit:star="editSTAR"
+        @add:star="addSTAR"
+        @delete:star="deleteSTAR"
         />
     </div>
     <div class="md-layout-item" />
@@ -23,18 +25,12 @@ export default {
     return {
       stars:[
         {
-          id: 1,
-          s: "situation",
-          t: "task",
-          a: "action",
-          r: "results",
-        },
-        {
-          id: 2,
-          s: "test s",
-          t: "test t",
-          a: "test a",
-          r: "test r",
+          id: 555,
+          s: "Situation",
+          t: "Task",
+          a: "Action",
+          r: "Results",
+          title: "Title",
         },
       ],
     }
@@ -42,6 +38,25 @@ export default {
   methods: {
     editSTAR(id, updatedSTAR) {
       this.stars = this.stars.map(star => star.id === id ? updatedSTAR : star);
+    },
+    addSTAR(){
+      var dt = new Date().getTime();
+      var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+          var r = (dt + Math.random()*16)%16 | 0;
+          dt = Math.floor(dt/16);
+          return (c=='x' ? r :(r&0x3|0x8)).toString(16);
+      });
+      this.stars.push({
+        id: uuid,
+        s: 'Situation',
+        t: 'Task',
+        a: 'Action',
+        r: 'Result',
+        title: 'Title',
+      })
+    },
+    deleteSTAR(id) {
+      this.stars = this.stars.filter(d => d.id !== id);  
     }
   },
 }
