@@ -1,20 +1,25 @@
 <template>
   <div id="app" class="md-layout md-gutter" >
-    <div class="md-layout-item" />
+    <div class="md-layout-item md-size-15" />
     <div class="md-layout-item">
       <starlist 
         :stars="stars" 
         @edit:star="editSTAR"
         @add:star="addSTAR"
         @delete:star="deleteSTAR"
+        @download="downloadList"
+        @update:url="updateURL"
         />
     </div>
-    <div class="md-layout-item" />
+    <div class="md-layout-item md-size-15" />
   </div>
 </template>
 
 <script>
 import starlist from './components/StarList.vue'
+import genUUID from './scripts/uuid.js'
+import saveToFile from './scripts/file.js'
+import getJsonByURL from './scripts/json.js'
 
 export default {
   name: 'app',
@@ -39,13 +44,9 @@ export default {
     editSTAR(id, updatedSTAR) {
       this.stars = this.stars.map(star => star.id === id ? updatedSTAR : star);
     },
+    
     addSTAR(){
-      var dt = new Date().getTime();
-      var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-          var r = (dt + Math.random()*16)%16 | 0;
-          dt = Math.floor(dt/16);
-          return (c=='x' ? r :(r&0x3|0x8)).toString(16);
-      });
+      var uuid = genUUID();
       this.stars.push({
         id: uuid,
         s: 'Situation',
@@ -55,8 +56,19 @@ export default {
         title: 'Title',
       })
     },
+
     deleteSTAR(id) {
       this.stars = this.stars.filter(d => d.id !== id);  
+    },
+
+    downloadList() {
+      saveToFile(JSON.stringify(this.stars, null, 4), 'star-list.json');
+    },
+
+    updateURL(in_url){
+      var j = getJsonByURL(in_url);
+      if (j)
+        this.stars = JSON.parse(j);
     }
   },
 }
