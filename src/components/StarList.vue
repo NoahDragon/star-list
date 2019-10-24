@@ -4,7 +4,7 @@
       <label>Load STARs from file</label>
       <md-file  v-model="filename" 
                 accept=".json" 
-                @md-change="onFileChange($event)"/>
+                @md-change="onFileChange"/>
     </md-field>
     <md-list v-for="star in stars" :key="star.id">
         <staritem
@@ -63,22 +63,22 @@
 
 <script>
 import staritem from "./StarItem.vue"
-import getJsonByTextFile from "../scripts/json.js"
+import jn from "../scripts/json.js"
 
 export default {
   name: 'starlist',
   props: {
     stars: Array,
   },
+  components: {
+    staritem,
+  },
   data() {
     return {
       active: false,
       starURL: null,
       filename: null,
-    }
-  },
-  components: {
-    staritem,
+    };
   },
   methods: {
     update(star) {
@@ -98,12 +98,12 @@ export default {
     },
 
     onLinkConfirm() {
-      this.$emit('update:url', this.starURL);
+      this.$emit('updateByUrl', this.starURL);
     },
 
-    onFileChange(files) {
-      var response = getJsonByTextFile(files[0]);
-      this.$emit('update:file', response);
+    async onFileChange(files) {
+      var response = await jn.getJsonByTextFile(files[0]);
+      this.$emit('updateByFile', response);
     }
   }
 }

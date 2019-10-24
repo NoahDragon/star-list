@@ -8,7 +8,8 @@
         @add:star="addSTAR"
         @delete:star="deleteSTAR"
         @download="downloadList"
-        @update:url="updateURL"
+        @updateByUrl="updateURL"
+        @updateByFile="updateFile"
         />
     </div>
     <div class="md-layout-item md-size-15" />
@@ -19,7 +20,8 @@
 import starlist from './components/StarList.vue'
 import genUUID from './scripts/uuid.js'
 import saveToFile from './scripts/file.js'
-import getJsonByURL from './scripts/json.js'
+import validURL from './scripts/utils.js'
+import jn from './scripts/json.js'
 
 export default {
   name: 'app',
@@ -28,24 +30,25 @@ export default {
   },
   data() {
     return {
-      stars:[
-        {
-          id: 555,
-          s: "Situation",
-          t: "Task",
-          a: "Action",
-          r: "Results",
-          title: "Title",
-        },
-      ],
-    }
+        temp: null,
+        stars:[
+            {
+            id: 555,
+            s: "Situation",
+            t: "Task",
+            a: "Action",
+            r: "Results",
+            title: "Title",
+            },
+        ],
+    };
   },
   methods: {
     editSTAR(id, updatedSTAR) {
       this.stars = this.stars.map(star => star.id === id ? updatedSTAR : star);
     },
     
-    addSTAR(){
+    addSTAR() {
       var uuid = genUUID();
       this.stars.push({
         id: uuid,
@@ -54,22 +57,28 @@ export default {
         a: 'Action',
         r: 'Result',
         title: 'Title',
-      })
+      });
     },
 
     deleteSTAR(id) {
-      this.stars = this.stars.filter(d => d.id !== id);  
+        this.stars = this.stars.filter(d => d.id !== id);  
     },
 
     downloadList() {
-      saveToFile(JSON.stringify(this.stars, null, 4), 'star-list.json');
+        saveToFile(JSON.stringify(this.stars, null, 4), 'star-list.json');
     },
 
-    updateURL(in_url){
-      var j = getJsonByURL(in_url);
-      if (j)
-        this.stars = JSON.parse(j);
-    }
+    updateURL(in_url) {
+        if(validURL(in_url))
+            jn.getJsonByURL(in_url, (e, d) => {
+                if(!e)
+                    this.stars = d;
+            });
+    },
+    updateFile(res) {
+        this.temp = res;
+        this.stars = JSON.parse(res);
+    } 
   },
 }
 </script>
