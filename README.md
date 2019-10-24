@@ -13,3 +13,27 @@ The STAR technique is similar to the SOARA technique.
 The STAR technique is also often complemented with an additional R on the end STARR or STAR(R) with the last R resembling reflection. This R aims to gather insight and interviewee's ability to learn and iterate. Whereas the STAR reveals how and what kind of result on an objective was achieved, the STARR with the additional R helps the interviewer to understand what the interviewee learned from the experience and how they would assimilate experiences. The interviewee can define what they would do (different, the same, or better) next time being posed with a situation.
 
 From [wikipedia](https://en.wikipedia.org/wiki/Situation,_task,_action,_result)
+
+# Usage
+
+Open the [link](https://www.abnerchou.me/star-list/) and start preparing.
+
+## Save list
+
+Click the save icon to download the list into a JSON file.
+
+## Loading existing list
+
+There are two ways to load existing lists.
+
+### Via JSON file
+
+Select the JSON file and load it.
+
+### Via URL
+
+Open the URL popup, and input the URL that contains pure JSON text.
+
+Put the URL in the query parameter. E.g. [https://www.abnerchou.me/star-list?u=https://raw.githubusercontent.com/NoahDragon/star-list/master/examples/example.json](https://www.abnerchou.me/star-list?u=https://raw.githubusercontent.com/NoahDragon/star-list/master/examples/example.json)
+
+

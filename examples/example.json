@@ -1,0 +1,26 @@
+[
+    {
+        "id": "4134ab7d-7b36-46e9-8ed3-6f266a62908b",
+        "s": "Situation: An event, project, or challenge faced",
+        "t": "Task: Your responsibilities and assignments for the situation",
+        "a": "Action: Steps or procedure taken to relieve or rectify situation",
+        "r": "Result: Results of actions taken.",
+        "title": "STAR Method"
+    },
+    {
+        "id": "46856063-61c8-4505-a4e1-f448cda8874b",
+        "s": "One time, at my last job, my coworker had a family emergency and needed to miss work for some time, and their super-important project was left unfinished and without a manager.",
+        "t": "My supervisor instructed me to take on the project, and with no leniency on the deadline, I had days to complete a project that originally should have taken several weeks.",
+        "a": "I requested and was granted a reduction in my weekly goals, allotting me more time to attack the special project. As far as my weekly goals, I was able to delegate them out evenly to some of my teammates.",
+        "r": "With the reduction in my daily goals, I was able to dedicate more time to the special project. This allowed me to finish it on time and with complete accuracy. My supervisor appreciated my attitude and drive, and I was given several more projects after that, along with an eventual promotion and pay raise.",
+        "title": "Tell me about a time when you performed well under enormous pressure."
+    },
+    {
+        "id": "41671c66-40f9-4dee-b4b5-2ed4fd42a7e8",
+        "s": "Previously, my department had a misunderstanding with members of our accounting department.",
+        "t": "We needed to correct the issue to keep office morale from plummeting.",
+        "a": "I gave my team a small budget and instructed my team to each pick out a thoughtful present for their counterpart in accounting.",
+        "r": "Later that night and from then onward, we became friends and strong colleagues.",
+        "title": "Have you ever dealt with a sticky situation involving another department?"
+    }
+]

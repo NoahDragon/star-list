@@ -14,31 +14,26 @@
           @delete:star="remove"
           class="md-primary"
         />
-        <md-divider />  
         <staritem 
           :star="star"
           :startype="'S'"
           @update:star="update"
          />
-        <md-divider />
         <staritem 
           :star="star"
           :startype="'T'"
           @update:star="update"
          />
-        <md-divider />
         <staritem 
           :star="star"
           :startype="'A'"
           @update:star="update"
          />
-        <md-divider />
         <staritem 
           :star="star"
           :startype="'R'"
           @update:star="update"
          />
-        <md-divider />
     </md-list>
     <md-button class="md-icon-button md-raised button" @click="add()">
         <md-icon>add</md-icon>
@@ -52,7 +47,7 @@
     <!-- Dialogs -->
     <md-dialog-prompt
         :md-active.sync="active"
-        v-model="starURL"
+        v-model="textUrl"
         md-title="URL to Load STARs"
         md-input-maxlength="1024"
         md-input-placeholder="URL Link"
@@ -69,6 +64,7 @@ export default {
   name: 'starlist',
   props: {
     stars: Array,
+    starUrl: String
   },
   components: {
     staritem,
@@ -76,8 +72,8 @@ export default {
   data() {
     return {
       active: false,
-      starURL: null,
       filename: null,
+      textUrl: null,
     };
   },
   methods: {
@@ -98,7 +94,7 @@ export default {
     },
 
     onLinkConfirm() {
-      this.$emit('updateByUrl', this.starURL);
+      this.$emit('updateByUrl', this.textUrl);
     },
 
     async onFileChange(files) {

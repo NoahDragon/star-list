@@ -9,53 +9,39 @@
             @md-cancel="onCancel"
             @md-confirm="onConfirm" />
         <md-icon v-if="startype !== 'title'">{{ startype }}</md-icon>
-        <div v-if="editing === star.id && type === startype">
+        <div @click="editMode(star, startype)" class="md-list-item-text md-headline cursor" @keydown="keyPressed($event)" >
             <md-field md-inline v-if="startype === 'S'">
                 <label>Situation</label>
-                <md-input v-model="star.s" v-on:keyup.enter="editSTAR(star)" v-focus/>
+                <md-textarea v-model="star.s" md-autogrow @focus="editMode(star, startype)" :readonly="editing ? false : true"/>
             </md-field>
             <md-field md-inline v-if="startype === 'T'">
                 <label>Task</label>
-                <md-input v-model="star.t" v-on:keyup.enter="editSTAR(star)" v-focus/>
+                <md-textarea v-model="star.t" md-autogrow @focus="editMode(star, startype)" :readonly="editing ? false : true"/>
             </md-field>
             <md-field md-inline v-if="startype === 'A'">
                 <label>Action</label>
-                <md-input v-model="star.a" v-on:keyup.enter="editSTAR(star)" v-focus/>
+                <md-textarea v-model="star.a" md-autogrow @focus="editMode(star, startype)" :readonly="editing ? false : true"/>
             </md-field>
             <md-field md-inline v-if="startype === 'R'">
                 <label>Result</label>
-                <md-input v-model="star.r" v-on:keyup.enter="editSTAR(star)" v-focus/>
+                <md-textarea v-model="star.r" md-autogrow @focus="editMode(star, startype)" :readonly="editing ? false : true"/>
             </md-field>
             <md-field md-inline v-if="startype === 'title'">
                 <label>Title</label>
-                <md-input v-model="star.title" v-on:keyup.enter="editSTAR(star)" v-focus/>
+                <md-textarea v-model="star.title" md-autogrow @focus="editMode(star, startype)" :readonly="editing ? false : true"/>
             </md-field>
-        </div>
-        <div v-else @click="editMode(star, startype)" class="md-list-item-text md-headline cursor">
-            <span v-if="startype === 'S'"> {{ star.s }} </span>
-            <span v-if="startype === 'T'"> {{ star.t }} </span>
-            <span v-if="startype === 'A'"> {{ star.a }} </span>
-            <span v-if="startype === 'R'"> {{ star.r }} </span>
-            <span v-if="startype === 'title'"> {{ star.title }} </span>
         </div>
         <div v-if="editing === star.id && type === startype">
             <md-button class="md-icon-button md-raised" @click="editSTAR(star)">
                 <md-icon>save</md-icon>
             </md-button>
-            <md-button class="md-icon-button md-raised" @click="cancelEdit(star)">
+            <md-button class="md-icon-button md-raised" @click="cancelEdit(star, startype)">
                 <md-icon>cancel</md-icon>
             </md-button>
             <md-button v-if="startype === 'title'" class="md-icon-button md-raised" @click="active = true">
                 <md-icon>delete</md-icon>
             </md-button>
         </div>
-        <!--
-        <div v-else>
-            <md-button class="md-icon-button md-raised button" @click="editMode(star, startype)">
-                <md-icon>edit</md-icon>
-            </md-button>
-        </div>
-        -->
     </md-list-item>
 </template>
 <script>
@@ -82,13 +68,33 @@ export default {
     },
     methods: {
         editMode(star, type){
-            this.cachedSTAR = Object.assign({}, star);
+            if (type === 'S')
+                this.cachedSTAR = star.s;
+            if (type === 'T')
+                this.cachedSTAR = star.t;
+            if (type === 'A')
+                this.cachedSTAR = star.a;
+            if (type === 'R')
+                this.cachedSTAR = star.r;
+            if (type === 'title')
+                this.cachedSTAR = star.title;
+
             this.editing = star.id;
             this.type = type;
         },
 
-        cancelEdit(star){
-            Object.assign(star, this.cachedSTAR);
+        cancelEdit(star, type){
+            if (type === 'S')
+                star.s = this.cachedSTAR;
+            if (type === 'T')
+                star.t = this.cachedSTAR;
+            if (type === 'A')
+                star.a = this.cachedSTAR;
+            if (type === 'R')
+                star.r = this.cachedSTAR;
+            if (type === 'title')
+                star.title = this.cachedSTAR;
+
             this.editing = null;
             this.type = null;
         },
@@ -105,7 +111,14 @@ export default {
             this.type = null;
         },
 
-        onCancel() {}
+        onCancel() {},
+
+        keyPressed(e) {
+            if(e.getModifierState("Control") && e.key == "Enter")
+                this.editSTAR(this.star);
+            if(e.key == "Escape")
+                this.cancelEdit(this.star, this.startype);   
+        }
 
     }
 }
@@ -120,5 +133,10 @@ export default {
 }
 .cursor {
     cursor: pointer;
+}
+span { 
+    display:block;
+    width:500px;
+    word-break:break-all;
 }
 </style>

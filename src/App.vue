@@ -31,17 +31,11 @@ export default {
   data() {
     return {
         temp: null,
-        stars:[
-            {
-            id: 555,
-            s: "Situation",
-            t: "Task",
-            a: "Action",
-            r: "Results",
-            title: "Title",
-            },
-        ],
+        stars:[],
     };
+  },
+  mounted() {
+    this.updateURL(new URLSearchParams(window.location.search).get("u"));
   },
   methods: {
     editSTAR(id, updatedSTAR) {
@@ -52,11 +46,11 @@ export default {
       var uuid = genUUID();
       this.stars.push({
         id: uuid,
-        s: 'Situation',
-        t: 'Task',
-        a: 'Action',
-        r: 'Result',
-        title: 'Title',
+        s: '',
+        t: '',
+        a: '',
+        r: '',
+        title: '',
       });
     },
 
