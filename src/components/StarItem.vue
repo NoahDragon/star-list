@@ -9,7 +9,7 @@
             @md-cancel="onCancel"
             @md-confirm="onConfirm" />
         <md-icon v-if="startype !== 'title'">{{ startype }}</md-icon>
-        <div class="md-list-item-text md-headline cursor" @keydown="keyPressed($event)">
+        <div class="md-list-item-text md-headline" @keydown="keyPressed($event)">
             <md-field md-inline v-if="startype === 'S'">
                 <label>Situation</label>
                 <md-textarea v-model="star.s" md-autogrow @dblclick="editMode(star, startype)" :readonly="editing ? false : true"/>
@@ -31,15 +31,20 @@
                 <md-textarea v-model="star.title" md-autogrow @dblclick="editMode(star, startype)" :readonly="editing ? false : true"/>
             </md-field>
         </div>
-        <div v-if="editing === star.id && type === startype">
+        <div v-if="editing">
             <md-button class="md-icon-button md-raised" @click="editSTAR(star)">
                 <md-icon>save</md-icon>
             </md-button>
             <md-button class="md-icon-button md-raised" @click="cancelEdit(star, startype)">
                 <md-icon>cancel</md-icon>
             </md-button>
-            <md-button v-if="startype === 'title'" class="md-icon-button md-raised" @click="active = true">
+        </div>
+        <div v-if="startype === 'title'">
+            <md-button class="md-icon-button md-raised md-accent" @click="active = true">
                 <md-icon>delete</md-icon>
+            </md-button>
+            <md-button class="md-icon-button" disabled>
+                <md-icon>swap_vert</md-icon>
             </md-button>
         </div>
     </md-list-item>

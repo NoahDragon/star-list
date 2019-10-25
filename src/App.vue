@@ -17,13 +17,13 @@
         @updateByUrl="updateURL"
         @updateByFile="updateFile"
         />
-      <md-button class="md-icon-button md-raised" @click="addSTAR()">
+      <md-button class="md-icon-button md-raised md-primary" @click="addSTAR()">
           <md-icon>add</md-icon>
       </md-button>
-      <md-button class="md-icon-button md-raised" @click="downloadList()">
+      <md-button class="md-icon-button md-raised md-primary" @click="downloadList()">
           <md-icon>cloud_download</md-icon>
       </md-button>
-      <md-button class="md-icon-button md-raised" @click="linkPopupActive=true">
+      <md-button class="md-icon-button md-raised md-primary" @click="linkPopupActive=true">
           <md-icon>link</md-icon>
       </md-button>
     </div>
