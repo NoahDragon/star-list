@@ -9,7 +9,7 @@
             @md-cancel="onCancel"
             @md-confirm="onConfirm" />
         <md-icon v-if="startype !== 'title'">{{ startype }}</md-icon>
-        <div class="md-list-item-text md-headline cursor" @keydown="keyPressed($event)" @keyup.space="editMode(star, startype)" @keydown.space="(event) => event.preventDefault()">
+        <div class="md-list-item-text md-headline cursor" @keydown="keyPressed($event)" @keyup.space="editMode(star, startype)">
             <md-field md-inline v-if="startype === 'S'">
                 <label>Situation</label>
                 <md-textarea v-model="star.s" md-autogrow @dblclick="editMode(star, startype)" :readonly="editing ? false : true"/>
