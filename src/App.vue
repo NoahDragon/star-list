@@ -2,6 +2,12 @@
   <div id="app" class="md-layout md-gutter" >
     <div class="md-layout-item md-size-15" />
     <div class="md-layout-item">
+      <md-field md-inline>
+        <label>Load STARs from file</label>
+        <md-file  v-model="filename" 
+                  accept=".json" 
+                  @md-change="onFileChange"/>
+      </md-field>
       <starlist 
         :stars="stars" 
         @edit:star="editSTAR"
@@ -11,8 +17,28 @@
         @updateByUrl="updateURL"
         @updateByFile="updateFile"
         />
+      <md-button class="md-icon-button md-raised" @click="addSTAR()">
+          <md-icon>add</md-icon>
+      </md-button>
+      <md-button class="md-icon-button md-raised" @click="downloadList()">
+          <md-icon>cloud_download</md-icon>
+      </md-button>
+      <md-button class="md-icon-button md-raised" @click="linkPopupActive=true">
+          <md-icon>link</md-icon>
+      </md-button>
     </div>
-    <div class="md-layout-item md-size-15" />
+    <div class="md-layout-item md-size-15">
+    </div>
+    <!-- Dialogs -->
+    <md-dialog-prompt
+        :md-active.sync="linkPopupActive"
+        v-model="textUrl"
+        md-title="URL to Load STARs"
+        md-input-maxlength="1024"
+        md-input-placeholder="URL Link"
+        md-confirm-text="Done" 
+        @md-confirm="updateURL"
+      />
   </div>
 </template>
 
@@ -32,6 +58,9 @@ export default {
     return {
         temp: null,
         stars:[],
+        textUrl: null,
+        linkPopupActive: false,
+        filename: null,
     };
   },
   mounted() {
@@ -62,9 +91,14 @@ export default {
         saveToFile(JSON.stringify(this.stars, null, 4), 'star-list.json');
     },
 
-    updateURL(in_url) {
-        if(validURL(in_url))
-            jn.getJsonByURL(in_url, (e, d) => {
+    async onFileChange(files) {
+      var response = await jn.getJsonByTextFile(files[0]);
+      this.updateFile(response);
+    },
+
+    updateURL() {
+        if(validURL(this.textUrl))
+            jn.getJsonByURL(this.textUrl, (e, d) => {
                 if(!e)
                     this.stars = d;
             });

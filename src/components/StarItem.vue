@@ -9,26 +9,26 @@
             @md-cancel="onCancel"
             @md-confirm="onConfirm" />
         <md-icon v-if="startype !== 'title'">{{ startype }}</md-icon>
-        <div @click="editMode(star, startype)" class="md-list-item-text md-headline cursor" @keydown="keyPressed($event)" >
+        <div class="md-list-item-text md-headline cursor" @keydown="keyPressed($event)" @keyup.space="editMode(star, startype)" @keydown.space="(event) => event.preventDefault()">
             <md-field md-inline v-if="startype === 'S'">
                 <label>Situation</label>
-                <md-textarea v-model="star.s" md-autogrow @focus="editMode(star, startype)" :readonly="editing ? false : true"/>
+                <md-textarea v-model="star.s" md-autogrow @dblclick="editMode(star, startype)" :readonly="editing ? false : true"/>
             </md-field>
             <md-field md-inline v-if="startype === 'T'">
                 <label>Task</label>
-                <md-textarea v-model="star.t" md-autogrow @focus="editMode(star, startype)" :readonly="editing ? false : true"/>
+                <md-textarea v-model="star.t" md-autogrow @dblclick="editMode(star, startype)" :readonly="editing ? false : true"/>
             </md-field>
             <md-field md-inline v-if="startype === 'A'">
                 <label>Action</label>
-                <md-textarea v-model="star.a" md-autogrow @focus="editMode(star, startype)" :readonly="editing ? false : true"/>
+                <md-textarea v-model="star.a" md-autogrow @dblclick="editMode(star, startype)" :readonly="editing ? false : true"/>
             </md-field>
             <md-field md-inline v-if="startype === 'R'">
                 <label>Result</label>
-                <md-textarea v-model="star.r" md-autogrow @focus="editMode(star, startype)" :readonly="editing ? false : true"/>
+                <md-textarea v-model="star.r" md-autogrow @dblclick="editMode(star, startype)" :readonly="editing ? false : true"/>
             </md-field>
             <md-field md-inline v-if="startype === 'title'">
                 <label>Title</label>
-                <md-textarea v-model="star.title" md-autogrow @focus="editMode(star, startype)" :readonly="editing ? false : true"/>
+                <md-textarea v-model="star.title" md-autogrow @dblclick="editMode(star, startype)" :readonly="editing ? false : true"/>
             </md-field>
         </div>
         <div v-if="editing === star.id && type === startype">

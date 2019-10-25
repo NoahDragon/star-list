@@ -18,6 +18,10 @@ From [wikipedia](https://en.wikipedia.org/wiki/Situation,_task,_action,_result)
 
 Open the [link](https://www.abnerchou.me/star-list/) and start preparing.
 
+Double click or select the row and press space to start edit. Click the save button or Ctrl+Enter to store the changes.
+
+**Note**: Please disable Vimium for best user experience.
+
 ## Save list
 
 Click the save icon to download the list into a JSON file.
@@ -34,6 +38,6 @@ Select the JSON file and load it.
 
 Open the URL popup, and input the URL that contains pure JSON text.
 
-Put the URL in the query parameter. E.g. [https://www.abnerchou.me/star-list?u=https://raw.githubusercontent.com/NoahDragon/star-list/master/examples/example.json](https://www.abnerchou.me/star-list?u=https://raw.githubusercontent.com/NoahDragon/star-list/master/examples/example.json)
+OR Put the URL in the query parameter. E.g. [https://www.abnerchou.me/star-list?u=https://raw.githubusercontent.com/NoahDragon/star-list/master/examples/example.json](https://www.abnerchou.me/star-list?u=https://raw.githubusercontent.com/NoahDragon/star-list/master/examples/example.json)
 
 
