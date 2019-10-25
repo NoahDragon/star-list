@@ -9,7 +9,7 @@
             @md-cancel="onCancel"
             @md-confirm="onConfirm" />
         <md-icon v-if="startype !== 'title'">{{ startype }}</md-icon>
-        <div class="md-list-item-text md-headline cursor" @keydown="keyPressed($event)" @keyup.space="editMode(star, startype)">
+        <div class="md-list-item-text md-headline cursor" @keydown="keyPressed($event)">
             <md-field md-inline v-if="startype === 'S'">
                 <label>Situation</label>
                 <md-textarea v-model="star.s" md-autogrow @dblclick="editMode(star, startype)" :readonly="editing ? false : true"/>
@@ -116,8 +116,17 @@ export default {
         keyPressed(e) {
             if(e.getModifierState("Control") && e.key == "Enter")
                 this.editSTAR(this.star);
+            else if (e.key == "Enter"){
+                e.preventDefault();
+                this.editMode(this.star, this.startype);
+            }
             if(e.key == "Escape")
                 this.cancelEdit(this.star, this.startype);   
+        },
+
+        preventSpaceScroll(e) {
+            if(e.target == document.getElementById("itemdiv"))
+                e.preventDefault();
         }
 
     }

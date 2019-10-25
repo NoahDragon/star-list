@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="md-layout md-gutter" >
     <div class="md-layout-item md-size-15" />
-    <div class="md-layout-item">
+    <div id="main" class="md-layout-item">
       <md-field md-inline>
         <label>Load STARs from file</label>
         <md-file  v-model="filename" 
@@ -61,10 +61,14 @@ export default {
         textUrl: null,
         linkPopupActive: false,
         filename: null,
+        sizeChanged: false,
     };
   },
   mounted() {
     this.updateURL(new URLSearchParams(window.location.search).get("u"));
+  },
+  updated() {
+    this.updateScroll();
   },
   methods: {
     editSTAR(id, updatedSTAR) {
@@ -81,6 +85,7 @@ export default {
         r: '',
         title: '',
       });
+      this.sizeChanged = true;
     },
 
     deleteSTAR(id) {
@@ -103,10 +108,19 @@ export default {
                     this.stars = d;
             });
     },
+
     updateFile(res) {
         this.temp = res;
         this.stars = JSON.parse(res);
-    } 
+    },
+
+    updateScroll() {
+      if(this.sizeChanged){
+        var objdiv = document.body;
+        objdiv.scrollIntoView(false);
+        this.sizeChanged = false;
+      }
+    }
   },
 }
 </script>

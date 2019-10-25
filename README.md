@@ -18,7 +18,7 @@ From [wikipedia](https://en.wikipedia.org/wiki/Situation,_task,_action,_result)
 
 Open the [link](https://www.abnerchou.me/star-list/) and start preparing.
 
-Double click or select the row and press space (need to disable Scroll Anchor Serialization in Chrome) to start edit. Click the save button or Ctrl+Enter to store the changes.
+Double click or select the row and press enter to start edit. Click the save button or Ctrl+Enter to store the changes.
 
 **Note**: Please disable Vimium for best user experience.
 
