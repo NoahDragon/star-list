@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="md-layout md-gutter" >
-    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DP27M&placement=abnerchoume" id="_carbonads_js"></script>
+    <script async type="text/javascript" src="" id="_carbonads_js"></script>
     <div class="md-layout-item md-size-15" />
     <div id="main" class="md-layout-item">
       <md-field md-inline>
@@ -67,6 +67,11 @@ export default {
   },
   mounted() {
     this.updateURL(new URLSearchParams(window.location.search).get("u"));
+    let recaptchaScript = document.createElement('script');
+    recaptchaScript.setAttribute('src', '//cdn.carbonads.com/carbon.js?serve=CE7DP27M&placement=abnerchoume');
+    recaptchaScript.setAttribute('id', '_carbonads_js');
+    recaptchaScript.async = true;
+    document.getElementById('app').appendChild(recaptchaScript);
   },
   updated() {
     this.updateScroll();
