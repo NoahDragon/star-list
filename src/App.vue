@@ -1,5 +1,6 @@
 <template>
   <div id="app" class="md-layout md-gutter" >
+    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DP27M&placement=abnerchoume" id="_carbonads_js"></script>
     <div class="md-layout-item md-size-15" />
     <div id="main" class="md-layout-item">
       <md-field md-inline>
