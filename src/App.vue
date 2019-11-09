@@ -67,13 +67,14 @@ export default {
   mounted() {
     this.updateURL(new URLSearchParams(window.location.search).get("u"));
     let scriptWrapper = document.createElement('div');
+    let targetElement = document.getElementById('main');
     //scriptWrapper.setAttribute('class', 'md-layout-item');
     let carbonScript = document.createElement('script');
     carbonScript.setAttribute('src', '//cdn.carbonads.com/carbon.js?serve=CE7DP27M&placement=abnerchoume');
     carbonScript.setAttribute('id', '_carbonads_js');
     carbonScript.async = true;
     scriptWrapper.appendChild(carbonScript);
-    document.getElementById('main').appendChild(scriptWrapper);
+    targetElement.insertBefore(scriptWrapper, targetElement.firstChild);
   },
   updated() {
     this.updateScroll();
